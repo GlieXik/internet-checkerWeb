@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import Signal from "../components/signal";
 import axios from "axios";
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await axios(process.env.URL);
   if (!res) {
     return {
