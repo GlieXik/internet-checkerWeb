@@ -2,25 +2,31 @@ import Head from "next/head";
 
 import Signal from "../components/signal";
 import axios from "axios";
-export const getServerSideProps = async () => {
-  const res = await axios(process.env.URL);
-  if (!res) {
-    return {
-      noFound: null, // will be passed to the page component as props
+import { useState, useEffect } from "react";
+import Loading from "../components/Loading";
+
+export default function Home() {
+  const [status, setStatus] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios(process.env.URL);
+      setStatus(data.data.status);
+      setLoading(false);
     };
-  }
-  return {
-    props: { status: res.data.status }, // will be passed to the page component as props
-  };
-};
-export default function Home({ status }) {
+
+    fetchData().catch(console.error);
+  }, []);
+
   return (
     <>
       <Head>
         <title>Signal</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Signal status={status} />
+
+      {isLoading ? <Loading /> : <Signal status={status} />}
     </>
   );
 }

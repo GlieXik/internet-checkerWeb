@@ -1,6 +1,9 @@
 import styles from "../styles/Home.module.css";
 
 export default function Signal({ status }) {
+  console.log("====================================");
+  console.log(status);
+  console.log("====================================");
   if (status) {
     return (
       <>
@@ -13,8 +16,7 @@ export default function Signal({ status }) {
         </div>
       </>
     );
-  }
-  if (!status) {
+  } else if (!status) {
     return (
       <>
         <div id={styles.center_div}>
