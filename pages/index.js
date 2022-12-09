@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Signal from "../components/Signal";
+import Signal from "../components/signal";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
