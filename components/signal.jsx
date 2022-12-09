@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 
-export default function Signal({ status }) {
+function Signal({ status }) {
   if (status) {
     return (
       <>
@@ -27,3 +27,4 @@ export default function Signal({ status }) {
     );
   }
 }
+export default Signal;
