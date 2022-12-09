@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     URL: "https://inter-checker.onrender.com",
+    // URL: "https://google.com",
     // URL: "http://localhost:5051",
   },
 };

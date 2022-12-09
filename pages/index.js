@@ -12,13 +12,15 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios(process.env.URL);
-      setStatus(data.data.status);
+      setStatus(data.data.resoult);
       setLoading(false);
     };
 
     fetchData().catch(console.error);
   }, []);
-
+  console.log("====================================");
+  console.log(status);
+  console.log("====================================");
   return (
     <>
       <Head>
