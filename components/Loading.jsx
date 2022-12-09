@@ -1,7 +1,7 @@
 import styles from "../styles/Loading.module.css";
 import { ThreeCircles } from "react-loader-spinner";
 
-const Loading = () => {
+function Loading() {
   return (
     <>
       <div className={styles.loading_container}>
@@ -20,6 +20,6 @@ const Loading = () => {
       </div>
     </>
   );
-};
+}
 
 export default Loading;

@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Signal from "../components/signal";
+import Signal from "../components/Signal";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
@@ -45,6 +45,15 @@ export default function Home() {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale = 1, shrink-to-fit = no"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#07070f"
+        />
       </Head>
 
       {isLoading ? <Loading /> : <Signal status={status} />}
