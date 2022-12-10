@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    URL: "https://api-checker.onrender.com",
+    URL: "api-checker-internet.vercel.app",
+
     // URL: "https://api-checker-internet-hnje0coea-gliexik.vercel.app",
     // URL: "https://google.com",
     // URL: "http://localhost:5051",
