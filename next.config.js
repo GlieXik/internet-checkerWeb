@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    URL: "api-checker-internet.vercel.app",
+    URL: "https://api-checker-internet.vercel.app",
 
     // URL: "https://api-checker-internet-hnje0coea-gliexik.vercel.app",
     // URL: "https://google.com",
