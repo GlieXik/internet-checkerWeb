@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   env: {
-    URL: "https://stormy-springs-30292.herokuapp.com",
+    URL: "https://inetchecker.lm.r.appspot.com",
 
     // URL: "https://api-checker-internet-hnje0coea-gliexik.vercel.app",
     // URL: "https://google.com",
