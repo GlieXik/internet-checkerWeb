@@ -18,9 +18,7 @@ export default function Home() {
 
     fetchData().catch(console.error);
   }, []);
-  console.log("====================================");
-  console.log(status);
-  console.log("====================================");
+
   return (
     <>
       <Head>

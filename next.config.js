@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
   env: {
-    URL: "https://api-checker-internet.vercel.app",
+    URL: "https://stormy-springs-30292.herokuapp.com",
 
     // URL: "https://api-checker-internet-hnje0coea-gliexik.vercel.app",
     // URL: "https://google.com",
