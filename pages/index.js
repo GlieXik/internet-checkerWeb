@@ -10,6 +10,11 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.onblur = function () {
+      window.onfocus = function () {
+        location.reload(true);
+      };
+    };
     const fetchData = async () => {
       try {
         const { data } = await axios("/api/fetch");
