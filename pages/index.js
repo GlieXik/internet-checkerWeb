@@ -11,12 +11,16 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios(process.env.URL);
-      setStatus(data.data.resoult);
-      setLoading(false);
-    };
+      try {
+        const { data } = await axios("http://localhost:3000/api/fetch");
 
-    fetchData().catch(console.error);
+        setStatus(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
