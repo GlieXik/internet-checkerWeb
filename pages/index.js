@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios("http://localhost:3000/api/fetch");
+        const { data } = await axios("/api/fetch");
 
         setStatus(data);
         setLoading(false);
