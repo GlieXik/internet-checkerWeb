@@ -18,8 +18,8 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const { data } = await axios("/api/fetch");
-
-        setStatus(data);
+        console.log(data.status);
+        setStatus(data.status);
         setLoading(false);
       } catch (error) {
         console.log(error);
