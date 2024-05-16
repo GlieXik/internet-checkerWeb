@@ -5,7 +5,7 @@ const nextConfig = {
   env: {
     // URL: "https://inetchecker.lm.r.appspot.com",
     // URL: "https://api-checker-internet-hnje0coea-gliexik.vercel.app",
-    URL: "http://myhomerouter.hopto.org",
+    URL: "http://routergliex.zapto.org",
     // URL: "http://localhost:5051",
   },
 };
