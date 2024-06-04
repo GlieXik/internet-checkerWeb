@@ -1,4 +1,46 @@
-#center_div {
+input {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 6px 10px;
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 80%);
+  background-color: #0f0f0f;
+  border-radius: 4px;
+  color: white;
+}
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0f0f0f;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+ul {
+  list-style-type: none;
+}
+body {
+  color: white;
+  background-color: var(--background-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.center_div {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -184,5 +226,36 @@
     opacity: 0;
   }
 }
+.nav-list {
+  position: absolute;
+  padding: 12px 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.nav-button {
+  background-color: #000;
+  color: white;
+  border: 1px solid white;
+  flex-shrink: 1;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 60px;
+  height: 60px;
+}
 
-/*Center-div (Not part of the symbol)*/
+@font-face {
+  font-family: "Stanley";
+  src: url("/font/Stanley.ttf") format("truetype");
+}
+.logo {
+  position: relative;
+  display: inline-flex;
+  font-family: "Stanley";
+  font-size: 3rem;
+  letter-spacing: 0.5rem;
+}
