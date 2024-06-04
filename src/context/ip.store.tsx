@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { useLocalStorage } from "usehooks-ts";
 const initialState: SelectIp = { value: "", label: "" };
 

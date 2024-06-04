@@ -1,7 +1,6 @@
-import { CSSProperties, useCallback, useState } from "react";
+import { CSSProperties, useCallback } from "react";
 import Select from "react-select/creatable";
-import { useLocalStorage } from "usehooks-ts";
-import { useIp } from "../../context/ip.store";
+
 import { useOptions } from "../../hooks/useOptions";
 
 const groupBadgeStyles: CSSProperties = {
