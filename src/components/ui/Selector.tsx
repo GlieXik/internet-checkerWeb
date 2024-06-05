@@ -75,7 +75,7 @@ export const Selector = ({ value, setValue }: SelectorProps) => {
         placeholder="Select or type an IP address"
         options={options}
         formatGroupLabel={
-          formatGroupLabel as ((_: any) => React.ReactNode) | undefined
+          formatGroupLabel as ((_: unknown) => React.ReactNode) | undefined
         }
         name="ip-address"
         styles={{

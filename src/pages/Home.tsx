@@ -5,6 +5,7 @@ import { useIp, useUpdateIp } from "../context/ip.store";
 import axios from "axios";
 import { useOptions } from "../hooks/useOptions";
 import { toast } from "react-toastify";
+import { EditSelector } from "../components/Settings";
 
 export const HomePage = () => {
   const formState = useIp();
@@ -110,6 +111,7 @@ export const HomePage = () => {
           </button>
         </form>
       </div>
+      <EditSelector />
     </div>
   );
 };
