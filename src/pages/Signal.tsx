@@ -1,15 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { postSignal } from "../api/api";
 import { Loader } from "../components/ui/Loader";
 import { SignalPulse } from "../components/Signal/SignalPulse";
-import { useIp } from "../context/ip.store";
+import { SelectorContext } from "../context/selector.context";
 
 export const Signal = () => {
   const [loading, setLoading] = useState(true);
   const [isSignal, setIsSignal] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const { value } = useIp();
+  const { lastSelected } = useContext(SelectorContext);
 
   const checkSignal = useCallback(async (ipAddress: string) => {
     try {
@@ -26,11 +25,11 @@ export const Signal = () => {
   }, []);
 
   useEffect(() => {
-    if (!value) {
+    if (!lastSelected) {
       return;
     }
-    checkSignal(value);
-  }, [postSignal]);
+    checkSignal(lastSelected.value);
+  }, [checkSignal, lastSelected]);
 
   if (loading) {
     return (

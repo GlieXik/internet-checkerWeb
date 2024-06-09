@@ -1,18 +1,18 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useIp } from "../context/ip.store";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { ROUTERS } from "../router";
 import { Navigation } from "../components/Navigation/Navigation";
+import { SelectorContext } from "../context/selector.context";
 
 export const WithNav = () => {
-  const { value } = useIp();
   const navigate = useNavigate();
+  const { lastSelected: value } = useContext(SelectorContext);
 
   useEffect(() => {
     if (!value) {
       return navigate(ROUTERS.HOME);
     }
-  }, [value]);
+  }, [navigate, value]);
 
   return (
     <>

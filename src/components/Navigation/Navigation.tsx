@@ -8,10 +8,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, Paper } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import UpdateIcon from "@mui/icons-material/Update";
-import { useIp } from "../../context/ip.store";
+import { useContext } from "react";
+import { SelectorContext } from "../../context/selector.context";
+// import { useIp } from "../../context/selector.context";
 export const Navigation = () => {
   const navigate = useNavigate();
-  const { value } = useIp();
+  const { lastSelected: value } = useContext(SelectorContext);
+
   const goBack = () => {
     navigate(-1);
   };
@@ -64,9 +67,10 @@ export const Navigation = () => {
         textAlign={"center"}
         sx={{
           color: "#008170",
+          paddingBottom: "1rem",
         }}
       >
-        {value}
+        {value?.label}
       </Box>
     </Paper>
   );

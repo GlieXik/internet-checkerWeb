@@ -1,24 +1,23 @@
 // import { Input } from "../components/ui/Input";
 import { useNavigate } from "react-router-dom";
 import { Selector } from "../components/ui/Selector";
-import { useIp, useUpdateIp } from "../context/ip.store";
 import axios from "axios";
-import { useOptions } from "../hooks/useOptions";
+
 import { toast } from "react-toastify";
 import { EditSelector } from "../components/Settings";
+import { useContext } from "react";
+import { ActionType, SelectorContext } from "../context/selector.context";
 
 export const HomePage = () => {
-  const formState = useIp();
-  const dispatch = useUpdateIp();
-
   const navigate = useNavigate();
-
+  const { setLastSelected, dispatch, lastSelected } =
+    useContext(SelectorContext);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!lastSelected) return;
+
     navigate("/signal");
   };
-
-  const { handleCreate } = useOptions();
 
   const handleGetIp = async () => {
     try {
@@ -30,8 +29,11 @@ export const HomePage = () => {
           error: "Failed to fetch IP",
         }
       );
-
-      handleCreate(data.ip);
+      setLastSelected({ value: data.ip, label: data.ip });
+      dispatch({
+        type: ActionType.SET,
+        payload: { value: data.ip, label: data.ip },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -76,10 +78,7 @@ export const HomePage = () => {
             gap: "1.2rem",
           }}
         >
-          <Selector
-            value={formState}
-            setValue={(value: SelectIp) => dispatch(value)}
-          />
+          <Selector />
           <button
             type="submit"
             style={{
