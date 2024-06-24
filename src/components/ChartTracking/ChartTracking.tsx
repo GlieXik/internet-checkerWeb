@@ -39,7 +39,7 @@ export const ChartTracking = ({ dataRender }: { dataRender: DataRender[] }) => {
         />
 
         <Tooltip
-          formatter={(value, name, props) => {
+          formatter={(value, _, props) => {
             const signal = value === 1 ? "On" : "Off";
             return [`${signal}`, `Time: ${props.payload.time}`];
           }}
