@@ -104,7 +104,7 @@ export const Tracking = () => {
           />
         </Toolbar>
       </AppBar>
-      <Box mt={20}>
+      <Box mt={10}>
         {loading && data.length === 0 && (
           <CircularProgress
             sx={{

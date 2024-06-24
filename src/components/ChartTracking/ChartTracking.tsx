@@ -29,10 +29,10 @@ export const ChartTracking = ({ dataRender }: { dataRender: DataRender[] }) => {
     <ResponsiveContainer width={"100%"} height={200}>
       <LineChart
         data={data}
-        margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+        margin={{ top: 10, right: 30, left: 20, bottom: 50 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" interval={0} tickSize={10} />
+        <XAxis dataKey="time" interval={0} tickSize={25} angle={45} />
         <YAxis
           interval={3}
           tickFormatter={(value) => (value === 1 ? "On" : "Off")}
