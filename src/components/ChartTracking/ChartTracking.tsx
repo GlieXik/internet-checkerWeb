@@ -32,7 +32,7 @@ export const ChartTracking = ({ dataRender }: { dataRender: DataRender[] }) => {
         margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" />
+        <XAxis dataKey="time" interval={0} tickSize={10} />
         <YAxis
           interval={3}
           tickFormatter={(value) => (value === 1 ? "On" : "Off")}

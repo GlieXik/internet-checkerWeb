@@ -38,13 +38,13 @@ export const Tracking = () => {
         (item: TrackingIP, index: number, array: TrackingIP[]) =>
           index === 0 || item.isActive !== array[index - 1].isActive
       );
-      const lastInactiveItem = trackingIPs
-        .slice()
-        .reverse()
-        .find((item: TrackingIP) => !item.isActive);
-      if (lastInactiveItem) {
-        filteredData.push(lastInactiveItem);
+      const lastItem = trackingIPs[trackingIPs.length - 1];
+
+      if (lastItem) {
+        filteredData.push(lastItem);
       }
+      console.log(lastItem);
+
       setData(filteredData);
     } catch (error) {
       console.error(error);
