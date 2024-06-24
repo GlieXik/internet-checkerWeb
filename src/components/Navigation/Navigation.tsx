@@ -22,6 +22,9 @@ export const Navigation = () => {
     navigate(ROUTERS.HOME);
     localStorage.removeItem("lastSelect");
   };
+  const goTracking = () => {
+    navigate(ROUTERS.TRAKING);
+  };
 
   return (
     <Paper
@@ -56,8 +59,9 @@ export const Navigation = () => {
           }}
         />
         <BottomNavigationAction
-          label="Comming soon"
+          label="Tracking"
           icon={<UpdateIcon />}
+          onClick={goTracking}
           sx={{
             color: "#008170",
           }}
