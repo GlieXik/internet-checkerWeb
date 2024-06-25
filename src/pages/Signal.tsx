@@ -28,7 +28,11 @@ export const Signal = () => {
     if (!lastSelected) {
       return;
     }
-    checkSignal(lastSelected.value);
+
+    const interval = setInterval(() => {
+      checkSignal(lastSelected.value);
+    }, 10000);
+    return () => clearInterval(interval);
   }, [checkSignal, lastSelected]);
 
   if (loading) {
