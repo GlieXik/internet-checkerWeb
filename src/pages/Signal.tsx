@@ -28,7 +28,7 @@ export const Signal = () => {
     if (!lastSelected) {
       return;
     }
-
+    checkSignal(lastSelected.value);
     const interval = setInterval(() => {
       checkSignal(lastSelected.value);
     }, 10000);
