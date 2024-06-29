@@ -8,9 +8,10 @@ import {
 } from "@mui/material";
 import { ChartTracking } from "../components/ChartTracking/ChartTracking";
 import { useContext, useEffect, useState, useCallback } from "react";
-import moment from "moment";
+import moment, { Moment } from "moment";
 import { getToggleTracking, getTracking, postToggleTracking } from "../api/api";
 import { SelectorContext } from "../context/selector.context";
+import { DatePicker } from "@mui/x-date-pickers";
 
 type TrackingIP = {
   date: string;
@@ -22,16 +23,29 @@ export const Tracking = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isTracking, setIsTracking] = useState<boolean>(false);
-  const [loadingTracking, setLoadingTracking] = useState<boolean>(false);
+  const [loadingTracking, setLoadingTracking] = useState<boolean>(true);
 
   const { lastSelected: value } = useContext(SelectorContext);
 
+  const [dateTo, setDateTo] = useState<Moment>(moment());
+
+  const handleDateChange = (date: Moment) => {
+    setDateTo(date);
+    fetchTrackingData(); // Trigger data fetch on date change
+  };
+
   const fetchTrackingData = useCallback(async () => {
+    if (!value?.label) return; // Early return if no value is selected
+
+    setLoading(true);
     try {
+      const from = dateTo.startOf("day").toISOString(); // Start of the selected day
+      const to = dateTo.endOf("day").toISOString();
+
       const response = await getTracking({
-        ip: value?.label || "",
-        from: moment().startOf("day").toISOString(),
-        to: moment().toISOString(),
+        ip: value.label,
+        to,
+        from,
       });
       const trackingIPs = response.data.trackingIPs;
       const filteredData = trackingIPs.filter(
@@ -43,35 +57,43 @@ export const Tracking = () => {
       if (lastItem) {
         filteredData.push(lastItem);
       }
-      console.log(lastItem);
 
       setData(filteredData);
     } catch (error) {
       console.error(error);
-      setError(error as string);
+      setError((error as Error).message);
     } finally {
       setLoading(false);
     }
-  }, [value?.label]);
+  }, [dateTo, value?.label]);
 
   const fetchTrackingStatus = useCallback(async () => {
+    if (!value?.label) return; // Early return if no value is selected
+
     try {
-      setLoadingTracking(true);
-      const response = await getToggleTracking({ address: value?.label || "" });
+      const response = await getToggleTracking({ address: value.label });
       setIsTracking(response.data.trackingStatus.isTracking);
+    } catch (error) {
+      console.error(error);
+      setError((error as Error).message);
     } finally {
       setLoadingTracking(false);
     }
   }, [value?.label]);
 
   const handleChangeTracking = async () => {
+    if (!value?.label) return; // Early return if no value is selected
+
+    setLoadingTracking(true);
     try {
-      setLoadingTracking(true);
       const response = await postToggleTracking({
-        address: value?.label || "",
+        address: value.label,
         isTracking: !isTracking,
       });
       setIsTracking(response.data.isTracking);
+    } catch (error) {
+      console.error(error);
+      setError((error as Error).message);
     } finally {
       setLoadingTracking(false);
     }
@@ -79,11 +101,8 @@ export const Tracking = () => {
 
   useEffect(() => {
     fetchTrackingData();
-  }, [fetchTrackingData]);
-
-  useEffect(() => {
     fetchTrackingStatus();
-  }, [fetchTrackingStatus]);
+  }, [fetchTrackingData, fetchTrackingStatus]);
 
   return (
     <>
@@ -104,7 +123,7 @@ export const Tracking = () => {
           />
         </Toolbar>
       </AppBar>
-      <Box mt={10}>
+      <Box mt={10} position={"relative"}>
         {loading && data.length === 0 && (
           <CircularProgress
             sx={{
@@ -116,8 +135,20 @@ export const Tracking = () => {
             }}
           />
         )}
-        {!loading && data.length === 0 && <Typography>No data</Typography>}
-        {data.length > 0 && <ChartTracking dataRender={data} />}
+        <Box position={"relative"}>
+          {!loading && data.length === 0 && <Typography>No data</Typography>}
+          {data.length > 0 && (
+            <>
+              <ChartTracking dataRender={data} />
+            </>
+          )}
+          <DatePicker
+            label="Date"
+            value={dateTo}
+            onChange={(date) => handleDateChange(date as Moment)}
+            sx={{}}
+          />
+        </Box>
         {error && <Typography>Error {JSON.stringify(error)}</Typography>}
       </Box>
     </>
